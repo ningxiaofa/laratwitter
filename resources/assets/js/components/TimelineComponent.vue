@@ -5,7 +5,7 @@
             <img class="mr-3" />
             <div class="media-body">
                 <div class="mt-3">
-                    <a href="#">{{ post.user.name }}</a> | {{ post.createdDate }}
+                    <a :href="post.user.profileLink" target="_blank">{{ post.user.name }}</a> | {{ post.createdDate }}
                 </div>
                 <p>{{ post.body }}</p>
             </div>

@@ -49842,9 +49842,11 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "media-body" }, [
             _c("div", { staticClass: "mt-3" }, [
-              _c("a", { attrs: { href: "#" } }, [
-                _vm._v(_vm._s(post.user.name))
-              ]),
+              _c(
+                "a",
+                { attrs: { href: post.user.profileLink, target: "_blank" } },
+                [_vm._v(_vm._s(post.user.name))]
+              ),
               _vm._v(" | " + _vm._s(post.createdDate) + "\n            ")
             ]),
             _vm._v(" "),

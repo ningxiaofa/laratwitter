@@ -27,6 +27,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /* 用户主页链接 */
+    protected $appends = ['profileLink'];
+
     public function posts()
     {
         return $this->hasMany(Post::class);
@@ -39,5 +42,10 @@ class User extends Authenticatable
     public function getRouteKeyName()
     {
         return 'name';
+    }
+
+    public function getProfileLinkAttribute()
+    {
+        return route('user.show', $this); //$this是User的实例 ? TBD
     }
 }
