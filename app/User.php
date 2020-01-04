@@ -63,7 +63,7 @@ class User extends Authenticatable
      * 约束条件如下
      */
     // 不能关注自己
-    public function isNotMyself($user)
+    public function isNot($user)
     {
         return $this->id !== $user->id; //不知道还能这么用 TBD
     }
@@ -82,5 +82,11 @@ class User extends Authenticatable
             return false;
         }
         return !$this->isFollowing($user);
+    }
+
+    // 是否可以取消关注
+    public function canUnFollow($user)
+    {
+        return $this->isFollowing($user);
     }
 }

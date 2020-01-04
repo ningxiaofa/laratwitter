@@ -15,7 +15,15 @@ class UserController extends Controller
     public function follow(Request $request, User $user)
     {
         if ($request->user()->canFollow($user)) {
-            $request->user()->following()->attach($user); //多对多关联 attach[添加关联] detach[删除关联] sync[添加/删除关联]
+            $request->user()->following()->attach($user); // 多对多关联 attach[添加关联] detach[删除关联] sync[添加/删除关联]
+        }
+        return redirect()->back();
+    }
+
+    public function unFollow(Request $request, User $user)
+    {
+        if($request->user()->canUnFollow($user)) {
+            $request->user()->following()->detach($user); // 删除关联
         }
         return redirect()->back();
     }

@@ -21,3 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('tweet/save', 'PostController@store'); // 保存消息
 Route::get('users/{user}', 'UserController@show')->name('user.show'); // 查看个人主页
 Route::get('users/{user}/follow', 'UserController@follow')->name('user.follow'); // 关注用户
+Route::get('users/{user}/unfollow', 'UserController@unfollow')->name('user.unfollow'); // 取消关注
