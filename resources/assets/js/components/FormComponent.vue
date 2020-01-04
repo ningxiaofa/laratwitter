@@ -12,24 +12,28 @@
             </div>
             <div class="form-group">
                 <button class="btn btn-primary">
-                    发送
+                    Tweet
                 </button>
             </div>
         </form>
     </div>
 </template>
 
+<!--import Event from '../event.js';-->
+
 <script>
     export default {
         data() {
             return {
-                body : ''
+                body : '',
+                postData : {}
             }
         },
         methods : {
             saveTweet() {
                 axios.post('/tweet/save', { body : this.body }).then(res => {
-                    console.log(res.data);
+                    this.postData = res.data;
+                    Event.$emit('added_tweet', this.postData);
                 }).catch(e => {
                     console.error(e);
                 });
