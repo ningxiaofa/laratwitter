@@ -1,7 +1,18 @@
-@extends('layouts.app');
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
-        {{ $user->name }}
+        <div class="row">
+            <div class="col-md-12">
+                <h5>{{ $user->name }}</h5>
+                @if(auth()->user()->isNot($user))
+                    @if(auth()->user()->isFollowing($user))
+                        <a href="#" class="btn btn-danger">取消关注</a>
+                    @else
+                        <a href="#" class="btn btn-success">关注</a>
+                    @endif
+                @endif
+            </div>
+        </div>
     </div>
 @endsection

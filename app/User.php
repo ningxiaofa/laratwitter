@@ -48,4 +48,39 @@ class User extends Authenticatable
     {
         return route('user.show', $this); //$this是User的实例 ? TBD
     }
+
+    /**
+     * 用户与关注者的关联关系（多对多）
+     * 方式一如下:
+     * 方式二: 通过中间表user_follow_pivot code 暂省
+     */
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
+    /**
+     * 约束条件如下
+     */
+    // 不能关注自己
+    public function isNotMyself($user)
+    {
+        return $this->id !== $user->id; //不知道还能这么用 TBD
+    }
+
+    // 是否已经关注某用户
+    public function isFollowing($user)
+    {
+        //这里的following不能添加(), id默认为follower_id,否则造成链表查询的id模棱两可 或者使用$this->following()->where('follower_id', $user->id) 详细暂未 看明白 TBD
+        return (bool) $this->following->where('id', $user->id)->count();
+    }
+
+    // 是否能够关注某用户
+    public function canFollow($user)
+    {
+        if(!$this->isNot($user)) {
+            return false;
+        }
+        return !$this->isFollowing($user);
+    }
 }
