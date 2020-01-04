@@ -31,4 +31,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    /* 路由模型绑定 默认是主键id字段, 这里修改为name
+    即:http://laratwitter.test/users/学院君 访问个人主页
+    具体查看文档https://xueyuanjun.com/post/8731.html#bkmrk-路由模型绑定
+    */
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
 }
