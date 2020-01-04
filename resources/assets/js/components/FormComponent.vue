@@ -1,11 +1,12 @@
 <template>
     <div class="col-md-4">
-        <form>
+        <form @submit.prevent="saveTweet">
             <div class="form-group">
                 <textarea
                         class="form-control"
                         rows="8" cols="8"
                         maxlength="130"
+                        v-model="body"
                         required>
                 </textarea>
             </div>
@@ -20,7 +21,21 @@
 
 <script>
     export default {
-        name: "FormComponent"
+        data() {
+            return {
+                body : ''
+            }
+        },
+        methods : {
+            saveTweet() {
+                axios.post('/tweet/save', { body : this.body }).then(res => {
+                    console.log(res.data);
+                }).catch(e => {
+                    console.error(e);
+                });
+                this.body = '';
+            },
+        }
     }
 </script>
 
