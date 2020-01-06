@@ -49776,7 +49776,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49815,6 +49815,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
+        axios.get('/posts').then(function (resp) {
+            _this.posts = resp.data;
+        });
         // 定义了一个监听 added_tweet 事件的监听器，当该事件被触发后，就可以执行相应的方法将数据渲染到时间线组件中
         Event.$on('added_tweet', function (post) {
             _this.posts.unshift(post);

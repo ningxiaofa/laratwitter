@@ -24,6 +24,9 @@
             }
         },
         mounted() {
+            axios.get('/posts').then((resp => {
+                this.posts = resp.data;
+            }));
             // 定义了一个监听 added_tweet 事件的监听器，当该事件被触发后，就可以执行相应的方法将数据渲染到时间线组件中
             Event.$on('added_tweet', (post) => {
                 this.posts.unshift(post);
